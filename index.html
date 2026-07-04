@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>域名待售 | 优质品牌域名</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#4096ff',
+                        light: '#f0f7ff',
+                        dark: '#1f2937'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-glow {
+                text-shadow: 0 0 12px rgba(64, 150, 255, 0.35);
+            }
+            .bg-gradient-youth {
+                background: linear-gradient(145deg, #e8f3ff 0%, #d6eaff 100%);
+            }
+            .glass-card {
+                backdrop-filter: blur(10px);
+                background: rgba(255,255,255,0.75);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-youth text-dark flex flex-col items-center justify-center px-4 py-14">
+    <!-- 主容器 -->
+    <div class="max-w-3xl w-full text-center">
+        <!-- 域名大标题 -->
+        <h1 class="text-[clamp(2.6rem,9vw,5.2rem)] font-bold text-main text-glow mb-5 tracking-wide">
+            你的域名.com
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-600 mb-10">优质品牌域名 可出售 / 可租用</p>
+
+        <!-- 玻璃卡片主体 -->
+        <div class="glass-card border border-sky-200 rounded-3xl p-8 md:p-10 shadow-lg shadow-sky-100">
+            <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-slate-800">域名介绍</h2>
+            <div class="text-slate-600 space-y-4 text-lg leading-relaxed">
+                <p>简短易记、读音顺口，自带年轻化品牌气质，适配创业项目、自媒体、设计工作室、电商店铺、个人作品集、科技小站等各类场景。</p>
+                <p>拼写简单、便于传播，自带记忆点，长期使用能积累独特品牌价值。</p>
+            </div>
+
+            <!-- 特色标签 -->
+            <div class="flex flex-wrap justify-center gap-3 mt-8">
+                <span class="px-4 py-2 bg-main/10 border border-main/30 rounded-full text-sm text-main">简短好记</span>
+                <span class="px-4 py-2 bg-main/10 border border-main/30 rounded-full text-sm text-main">品牌感强</span>
+                <span class="px-4 py-2 bg-main/10 border border-main/30 rounded-full text-sm text-main">利于搜索</span>
+                <span class="px-4 py-2 bg-main/10 border border-main/30 rounded-full text-sm text-main">全球通用</span>
+                <span class="px-4 py-2 bg-main/10 border border-main/30 rounded-full text-sm text-main">青春简约</span>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:your@email.com" class="inline-flex items-center justify-center gap-2 bg-main hover:bg-sky-500 transition-all px-8 py-4 rounded-xl text-lg font-medium text-white shadow-md shadow-main/20">
+                    <i class="fa fa-envelope"></i> 邮件咨询报价
+                </a>
+                <a href="#info" class="inline-flex items-center justify-center gap-2 border border-sky-300 hover:border-main hover:text-main transition-all px-8 py-4 rounded-xl text-lg font-medium">
+                    <i class="fa fa-comment-o"></i> 更多详情
+                </a>
+            </div>
+        </div>
+
+        <!-- 底部版权 -->
+        <footer class="mt-14 text-slate-500 text-sm">
+            <p>© 2026 域名持有者 保留所有权利</p>
+            <p class="mt-2">诚意买家请发送你的项目简介至邮箱洽谈</p>
+        </footer>
+    </div>
+</body>
+</html>
