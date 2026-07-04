@@ -1,0 +1,34 @@
+<style>.player-set{max-height:380px;overflow:auto;}@media screen and (max-width: 768px){.player-set{max-height:480px;}}</style>
+<div class="page-container p10 player-set">
+  <form class="layui-form layui-form-pane">
+    <div class="layui-tab">
+      <div class="layui-tab-content" >
+        <div class="layui-tab-item layui-show jie-kou">
+
+          {volist name="info" id="vo" key="k"}
+          <div class="layui-form-item">
+            <label class="layui-form-label">播放器名称</label>
+            <div class="layui-input-inline" tips="播放器名称可修改更换" style="width:100px">
+              <input type="text" class="layui-input" value="{$vo.show}" lay-verify="required" placeholder="播放器的名称" name="show[]"></div>
+            <label class="layui-form-label">播放器编码</label>
+            <div class="layui-input-inline" tips="资源站设定的固定编码，不可更换" style="width:100px">
+              <input type="text" class="layui-input layui-disabled" value="{$vo.from}" disabled="" name="from[]"></div>
+          </div>
+          <input type="hidden" value="{$vo.sort}" name="sort[]">
+          <div class="layui-form-item jie-kou">
+            <label class="layui-form-label">解析接口</label>
+            <div class="layui-input-inline" tips="可自定义修改成你想使用的解析接口" id="jiekou" style="width:320px">
+              <input type="text" class="layui-input jxlink" lay-verify="required" value="{$vo.parse}" placeholder="请输入解析接口" id="apis_{$k}" name="link[]"></div>
+            <div class="layui-form-mid layui-word-aux jiekou-tips"></div>
+		  </div>
+		  {/volist}
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+			<button type="submit" class="layui-btn" id="layui-btn-submit" lay-submit="*" lay-filter="addplayer" data-child="true">立即保存</button>
+			</div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

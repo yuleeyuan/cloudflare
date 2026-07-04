@@ -1,0 +1,15 @@
+<div class="movie-item">
+    <div class="movie-poster">
+        <a href="{:mac_url_vod_play($vo)}">
+            <img src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}">
+            <span class="movie-rating">{$vo.vod_score}</span>
+        </a>
+    </div>
+    <div class="movie-info">
+        <div class="movie-title"><a href="{:mac_url_vod_play($vo)}">{$vo.vod_name}</a></div>
+        <div class="movie-meta">
+            <span>{$vo.vod_area}</span>
+            <span>{$vo.vod_director}</span>
+        </div>
+    </div>
+</div>

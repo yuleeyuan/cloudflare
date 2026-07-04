@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="content-language" content="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    {include file="public/seokey"}
+    {include file="public/style"}
+</head>
+<body>
+    {include file="public/header"}
+    
+    <!-- Banner轮播 -->
+    <div class="banner">
+        {maccms:vod num="5" paging="no" type="current" order="desc" by="sort" level="9" }
+        <div class="banner-slide{if condition="$key == 1"} active{/if}">
+        <a href="{:mac_url_vod_play($vo)}" class="banner-item">
+            <!--<img src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}">-->
+            <img src="{:mac_url_img($vo.vod_pic_slide)}" alt="{$vo.vod_name}">
+        </a>
+        </div>
+        {/maccms:vod}
+        
+        <button class="banner-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="banner-next"><i class="fas fa-chevron-right"></i></button>
+        
+        <div class="banner-indicators">
+        	{maccms:vod num="5" paging="no" type="current" order="desc" by="sort" level="9" }
+            <button  class="indicator{if condition="$key == 1"} active{/if}"></button >
+            {/maccms:vod}
+        </div>
+    </div>
+	
+    <section>
+        <h2 class="section-title">最新更新</h2>
+        <div class="movie-list">
+            {maccms:vod order="desc" by="time" num="24" type="all"}
+            {include file="public/list"}
+            {/maccms:vod}
+        </div>
+    </section>
+    
+    <!-- 友情链接 -->
+    <div class="friend-links">
+        <h2 class="section-title">友情链接</h2>
+        <div class="link-container">
+            {maccms:link num="'.$vfedcc['home']['link']['value'].'" order="asc" by="sort" type="font"}
+                <a href="{$vo.link_url}" target="_blank" class="link-item">{$vo.link_name}</a>
+            {/maccms:link}
+        </div>
+    </div>
+    
+    {include file="public/footer"}
+    
+    <script>
+		// 等待DOM加载完成
+		document.addEventListener('DOMContentLoaded', function() {
+			// Banner轮播功能
+			const bannerSlides = document.querySelectorAll('.banner-slide');
+			const bannerIndicators = document.querySelectorAll('.indicator');
+			const prevBtn = document.querySelector('.banner-prev');
+			const nextBtn = document.querySelector('.banner-next');
+			let currentSlide = 0;
+			let slideInterval;
+		
+			// 初始化轮播
+			if (bannerSlides.length > 0) {
+				startSlideInterval();
+				
+				// 上一张按钮
+				if (prevBtn) {
+					prevBtn.addEventListener('click', function() {
+						clearInterval(slideInterval);
+						currentSlide = (currentSlide - 1 + bannerSlides.length) % bannerSlides.length;
+						updateSlide();
+						startSlideInterval();
+					});
+				}
+				
+				// 下一张按钮
+				if (nextBtn) {
+					nextBtn.addEventListener('click', function() {
+						clearInterval(slideInterval);
+						currentSlide = (currentSlide + 1) % bannerSlides.length;
+						updateSlide();
+						startSlideInterval();
+					});
+				}
+				
+				// 指示器点击
+				bannerIndicators.forEach((indicator, index) => {
+					indicator.addEventListener('click', function() {
+						clearInterval(slideInterval);
+						currentSlide = index;
+						updateSlide();
+						startSlideInterval();
+					});
+				});
+			}
+		
+			// 更新轮播显示
+			function updateSlide() {
+				bannerSlides.forEach((slide, index) => {
+					slide.classList.toggle('active', index === currentSlide);
+				});
+				
+				bannerIndicators.forEach((indicator, index) => {
+					indicator.classList.toggle('active', index === currentSlide);
+				});
+			}
+		
+			// 开始轮播定时器
+			function startSlideInterval() {
+				slideInterval = setInterval(() => {
+					currentSlide = (currentSlide + 1) % bannerSlides.length;
+					updateSlide();
+				}, 5000);
+			}
+		});
+	</script>
+</body>
+</html>

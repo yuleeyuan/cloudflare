@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="content-language" content="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    {include file="public/seokey"}
+    {include file="public/style"}
+</head>
+<body>
+    {include file="public/header"}
+    
+    <!-- 影视列表 -->
+    <section>
+        <h2 class="section-title">搜索" {$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}</h2>
+        <div class="movie-list">
+        {maccms:vod num="16" paging="yes" pageurl="vod/search" order="desc" by="time"}
+        {include file="public/list"}
+        {/maccms:vod}
+    	</div>
+    </section>
+    
+    {include file="public/page"}
+    
+    {include file="public/footer"}
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="content-language" content="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    {include file="public/seokey"}
+    {include file="public/style"}
+</head>
+<body>
+    {include file="public/header"}
+    
+     <!-- 电影标题 -->
+    <div class="movie-header">
+        <h1>{$obj.vod_name} ({$obj.vod_en})</h1>
+    </div>
+
+    <!-- 播放器 -->
+    <section>
+        <div class="player-container">
+        	{$player_data}{$player_js}
+        </div>
+    </section>
+    
+     <!-- 电影详情 -->
+    <section class="movie-details">
+        <div class="details-grid">
+            <div class="movie-poster-large">
+                <img src="{:mac_url_img($obj.vod_pic)}" alt="{$vo.vod_name}">
+            </div>
+            <div class="movie-metadata">
+                <div class="metadata-item">
+                    <div class="metadata-label">评分：</div>
+                    <div class="metadata-value"><strong style="color: #ff3b30;">{$obj.vod_score|mac_default='未知'}</strong></div>
+                </div>
+                <div class="metadata-item">
+                    <div class="metadata-label">导演：</div>
+                    <div class="metadata-value">{$obj.vod_director|mac_default='未知'}</div>
+                </div>
+                <div class="metadata-item">
+                    <div class="metadata-label">主演：</div>
+                    <div class="metadata-value">{$obj.vod_actor|mac_default='未知'}</div>
+                </div>
+                <div class="metadata-item">
+                    <div class="metadata-label">类型：</div>
+                    <div class="metadata-value">{$obj.type.type_name|mac_default='未知'}</div>
+                </div>
+                <div class="metadata-item">
+                    <div class="metadata-label">地区：</div>
+                    <div class="metadata-value">{$obj.vod_area|mac_default='未知'}</div>
+                </div>
+                <div class="metadata-item">
+                    <div class="metadata-label">语言：</div>
+                    <div class="metadata-value">{$obj.vod_lang|mac_default='未知'}</div>
+                </div>
+                <div class="metadata-item">
+                    <div class="metadata-label">上映时间：</div>
+                    <div class="metadata-value">{$obj.vod_time|mac_default='未知'|date='Y-m-d',###}</div>
+                </div>
+                <div class="metadata-item">
+                    <div class="metadata-label">剧情简介：</div>
+                    <div class="metadata-value"><p>{$obj.vod_content|mac_filter_html|mac_default='暂无'}</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 播放源选择 -->
+    <section class="sources-container">
+        <h3 class="sources-title"><i class="fas fa-server"></i> 选择播放源</h3>
+        <div class="sources-list">
+        	{maccms:foreach name="obj.vod_play_list" id="vo"}
+            {maccms:foreach name="vo.urls" id="vo2" key="key2"}
+            <a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}" class="source-btn{if condition="$param.sid eq $vo.sid && $param.nid eq $vo2.nid"} active{/if}">{$vo2.name}</a>
+            {/maccms:foreach}
+            {/maccms:foreach}
+        </div>
+    </section>
+    
+    <!-- 相关推荐 -->
+    <section class="related-movies">
+        <h2 class="section-title">相关推荐</h2>
+        <div class="movie-list">
+            {maccms:vod num="12" type="'.$obj['type_id'].'" paging="false" order="desc" by="rnd"}
+            {include file="public/list"}
+            {/maccms:vod}
+        </div>
+    </section>
+
+    
+   {include file="public/footer"}
+</body>
+</html>

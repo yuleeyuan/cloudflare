@@ -1,0 +1,34 @@
+<div class="container">
+    <!-- 左侧导航 -->
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="{$maccms.path}">
+               <img src="{$maccms.path_tpl}logo.png" alt="{$maccms.site_name}" />
+            </a>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="{$maccms.path}"{if condition="$maccms.aid eq 1"} class="active"{/if}><i class="fas fa-home"></i> 首页</a></li>
+            {maccms:type ids="1,2,3,4" order="asc" by="sort"}
+            <li class="nav-item"><a href="{:mac_url_type($vo)}"{if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])" } class="active"{/if}><i class="fas {if condition="($vo.type_id eq 1)" }fa-film{elseif condition="$vo.type_id eq 2"}fa-film{elseif condition="$vo.type_id eq 3"}fa-tv{elseif condition="$vo.type_id eq 4"}fa-video{elseif condition="$vo.type_id eq 5"}fa-music{/if}"></i> {$vo.type_name}</a>
+            {/maccms:type}
+        </ul>
+    </aside>
+    
+    <!-- 右侧内容 -->
+    <main class="main-content">
+        <!-- 顶部搜索和功能区 -->
+        <div class="top-bar">
+            <div class="search-container">
+                <form class="search-form" id="search" name="search" method="get" action="{:mac_url('vod/search')}" onsubmit="return qrsearch();">
+                    <input type="text" id="wd" name="wd"  value="{$param.wd}" placeholder="请输入内容..."  autocomplete="off" class="search-input">
+                    <button type="submit" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="right-controls">
+                <a href="{:mac_url('label/rank')}" class="rank-link"><i class="fas fa-chart-line"></i> 排行榜</a>
+                <a href="{:mac_url('label/new')}" class="rank-link"><i class="fas fa-clock"></i> 最新更新</a>
+                <a href="tencent://message/?uin={$maccms.site_qq}&Site=&Menu=yes" class="service-link"><i class="fas fa-headphones"></i> 客服</a>
+            </div>
+        </div>

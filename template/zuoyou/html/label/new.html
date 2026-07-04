@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="content-language" content="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>最新更新 - {$maccms.site_name}</title>
+    <meta name="keywords" content="最新更新,{$maccms.site_keywords}" />
+    <meta name="description" content="{$maccms.site_description}" />
+    <meta itemprop="url" property="og:url" content="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/index')}" />
+    <meta itemprop="name" property="og:title" content="最新更新 - {$maccms.site_name}" />
+    <meta itemprop="image" property="og:image" content="{$maccms.http_type}{$maccms.site_url}{$vfedcc['main']['icon']|mac_default=substr($maccms['path_tpl'], strlen($maccms['path'])).'logo.png'|mac_url_img}" />
+    <meta itemprop="description" property="og:description" content="{$maccms.site_description}" />
+    {include file="public/style"}
+</head>
+<body>
+    {include file="public/header"}
+    
+    <!-- 影视列表 -->
+  	<section>
+        <h2 class="section-title">最新更新</h2>
+    	 <div class="movie-list">
+    	{maccms:vod num="40" order="desc" by="time"}
+    	{include file="public/list"}
+        {/maccms:vod}
+        </div>
+    </section>
+
+    
+   {include file="public/footer"}
+</body>
+</html>
